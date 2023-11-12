@@ -1,62 +1,78 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-
+import Home from './src/components/Home';
+import Image from './src/components/Image';
+import Menu from './src/components/Menu';
 const App = () => {
-  const [showMenu, setShowMenu] = useState(false);
+  const [activeMenu, setActiveMenu] = useState('Home');
 
   return (
     <View style={{flex: 1}}>
-      <TouchableOpacity
+      <View
         style={{
-          backgroundColor: '#28283b',
-          marginTop: 20,
-          marginHorizontal: 20,
-          paddingVertical: 10,
-          borderRadius: 6,
-          elevation: 2,
           flexDirection: 'row',
-          paddingHorizontal: 20,
-        }}
-        onPress={() => setShowMenu(!showMenu)}>
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Icon name="bars" size={25} color="#FFFFFF" />
-        </View>
-
-        <View
+          marginHorizontal: 20,
+          marginTop: 20,
+          borderWidth: 1,
+          borderColor: '#bdbdbd',
+          paddingVertical: 5,
+          paddingHorizontal: 5,
+          borderRadius: 9,
+          backgroundColor: '#FFFFFF',
+          elevation: 2,
+        }}>
+        <TouchableOpacity
           style={{
+            flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            marginLeft: 10,
+            backgroundColor: activeMenu == 'Home' ? '#1d5eff' : '#FFFFFF',
+            elevation: activeMenu == 'Home' ? 2 : 0,
+            paddingVertical: 12,
+            borderRadius: 9,
+          }}
+          onPress={() => setActiveMenu('Home')}>
+          <Text style={{color: activeMenu == 'Home' ? '#FFFFFF' : '#9ea3b0'}}>
+            Home
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{
             flex: 1,
-          }}>
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: activeMenu == 'Image' ? '#1d5eff' : '#FFFFFF',
+            elevation: activeMenu == 'Image' ? 2 : 0,
+            paddingVertical: 12,
+            borderRadius: 9,
+          }}
+          onPress={() => setActiveMenu('Image')}>
+          <Text style={{color: activeMenu == 'Image' ? '#FFFFFF' : '#9ea3b0'}}>
+            Image
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: activeMenu == 'Menu' ? '#1d5eff' : '#FFFFFF',
+            elevation: activeMenu == 'Menu' ? 2 : 0,
+            paddingVertical: 12,
+            borderRadius: 9,
+          }}
+          onPress={() => setActiveMenu('Menu')}>
           <Text
-            style={{color: '#FFFFFF', textAlign: 'center', fontWeight: 'bold'}}>
+            style={{color: activeMenu == 'Menu' ? '#FFFFFF' : '#9ea3b0'}}>
             Menu
           </Text>
-        </View>
-
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Icon name="angle-down" size={25} color="#FFFFFF" />
-        </View>
-      </TouchableOpacity>
-
-      {showMenu && (
-        <View
-          style={{
-            marginHorizontal: 20,
-            backgroundColor: '#FFFFFF',
-            elevation: 2,
-            paddingVertical: 20,
-            paddingHorizontal: 20,
-            borderBottomRightRadius: 6,
-            borderBottomLeftRadius: 6,
-          }}>
-          <Text style={{fontWeight: 'bold'}}>Home</Text>
-          <Text>Profil</Text>
-          <Text>Tentang Kami</Text>
-        </View>
-      )}
+        </TouchableOpacity>
+      </View>
+      {activeMenu == 'Home' && <Home />}
+      {activeMenu == 'Image' && <Image />}
+      {activeMenu == 'Menu' && <Menu />}
     </View>
   );
 };
