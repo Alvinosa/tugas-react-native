@@ -4,7 +4,7 @@ import {View, Text} from 'react-native';
 const Image = () => {
   return (
     <View style={{marginHorizontal: 20}}>
-      <Text style={{fontSize: 22}}>Image</Text>
+      <Text style={{fontSize: 22}}>seperti apa</Text>
     </View>
   );
 };

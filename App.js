@@ -73,6 +73,7 @@ const App = () => {
       {activeMenu == 'Home' && <Home />}
       {activeMenu == 'Image' && <Image />}
       {activeMenu == 'Menu' && <Menu />}
+      
     </View>
   );
 };
